@@ -22,4 +22,19 @@ app.post("/notes", async (req, res) => {
 
 })
 
+app.get("/notes", async (req, res) => {
+
+  // noteModel.find() is used to find the all the notes from database cluster which is there is Mumbai so don't know 
+  // how much time it'll take so...........
+  const notes = await noteModel.find()
+
+  // console.log(notes)
+
+  res.status(200).json({
+    message: "Notes fetched successfully!",
+    notes
+  })
+
+})
+
 module.exports = app;
