@@ -1,16 +1,33 @@
 import './index.css'
+import axios from 'axios'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = () => {
-  return (
-    <div className='notes flex flex-row flex-wrap mt-1 px-4 '>
 
-      <div className='text-red-400 m-1 flex items-center bg-gray-700 w-[19vw] max-w-[30vw] p-4 rounded-sm justify-between'>
-        <p className='text-2xl'>Title</p>
-        <p className='text-1xl'>Description</p>
-      </div>
- 
+  const [notes, setNotes] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/notes")
+      .then((res) => {
+        console.log(res.data.note)
+        setNotes(res.data.note)
+      })
+  }, [])
+
+  return (
+    <div className='notes flex flex-row flex-wrap mt-1 px-4'>
+      {
+        notes.map((elem, index) => {
+          return (
+            <div className='text-red-400 m-1 flex items-center flex-col bg-gray-700 p-4 rounded-sm' key={index}>
+              <p className='text-2xl'>Title: {elem.title}</p>
+              <p className='text-xl'>Age: {elem.age}</p>
+              <p className='text-xl'>{elem.description}</p>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }
