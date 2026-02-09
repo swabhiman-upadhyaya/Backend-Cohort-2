@@ -27,7 +27,6 @@ app.get("/notes", async (req, res) => {
   const note = await noteModel.find();
 
   res.status(201).json({
-
     message: "Note fetched successfully!",
     note
   })
