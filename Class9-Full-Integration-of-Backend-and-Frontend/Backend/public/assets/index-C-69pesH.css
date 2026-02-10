@@ -13,26 +13,22 @@ body,
   font-family: Arial, Helvetica, sans-serif
 }
 
-section.all {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
+section {
+  padding: 1rem
 }
 
 form {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 2rem
 }
 
 .inputs {
   display: flex;
   margin: .5rem;
   align-items: center;
-  gap: .8rem;
-  justify-content: center;
+  gap: .8rem
 }
 
 input {
@@ -46,7 +42,7 @@ input {
   border: none;
   padding: .3rem;
   transition: all .5s ease;
-  color: gray;
+  color: gray
 }
 
 input:hover {
@@ -59,22 +55,19 @@ button {
   padding: .25rem .6rem;
   font-size: 1rem;
   border-radius: .2rem;
-  cursor: pointer;
+  cursor: pointer
 }
 
 button:active {
-  scale: .99;
+  scale: .99
 }
 
 .allNotes {
   margin: 1rem;
   display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  column-gap: 3rem;
-  row-gap: 1.5rem;
+  gap: 1rem
 }
 
 .note-wrapper {
@@ -117,7 +110,7 @@ button:active {
 
 @media(max-width:700px) {
   .allNotes {
-    flex-direction: column;
+    flex-direction: column
   }
 
   form {

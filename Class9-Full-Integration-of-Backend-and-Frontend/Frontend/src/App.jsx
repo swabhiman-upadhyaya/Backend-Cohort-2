@@ -6,7 +6,7 @@ const App = () => {
   const [note, setNotes] = useState([])
 
   function fetchNotes() {
-    axios.get("http://localhost:3000/notes")
+    axios.get("https://backend-cohort-2-j428.onrender.com/notes/")
       .then((res) => {
         setNotes(res.data.note)
       })
@@ -22,7 +22,7 @@ const App = () => {
     const { title, description } = e.target.elements;
     console.log(title.value, description.value)
     
-    axios.post("http://localhost:3000/notes", {
+    axios.post("https://backend-cohort-2-j428.onrender.com/notes", {
       title: title.value,
       description: description.value
     })
@@ -34,7 +34,7 @@ const App = () => {
   }
 
   function deleteNote(noteId) {
-    axios.delete("http://localhost:3000/notes/"+noteId)
+    axios.delete("https://backend-cohort-2-j428.onrender.com/notes/"+noteId)
     .then(() => {
       console.log(noteId)
       fetchNotes();
