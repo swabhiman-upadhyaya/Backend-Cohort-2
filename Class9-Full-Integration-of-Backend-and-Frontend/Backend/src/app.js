@@ -47,9 +47,9 @@ app.delete("/notes/:id", async (req, res) => {
   })
 })
 
-app.use("*name", (req, res) => {
-  console.log(__dirname)
-  res.sendFile(path.join(__dirname, "..", "/public/index.html"))
-})
+// app.use("*name", (req, res) => {
+//   console.log(__dirname)
+//   res.sendFile(path.join(__dirname, "..", "/public/index.html"))
+// })
 
 module.exports = app;
