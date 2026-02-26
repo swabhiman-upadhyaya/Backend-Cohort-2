@@ -27,7 +27,8 @@ authRouter.post("/register", async (req, res) => {
     {
       id: userDetails._id
     },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" }
   )
 
   res.cookie("jwt_token", token);
@@ -37,6 +38,28 @@ authRouter.post("/register", async (req, res) => {
     message: "User Registered Successfully",
     userDetails,
     token
+  })
+})
+
+// GET-ME(fetching which user is requesting for accessing/modyfying the data) API.........
+authRouter.get("/get-me", async (req, res) => {
+  // it is used to extract the jwt_token which we have assigned in the register API
+  
+  console.log(req.cookies)
+  const token = req.cookies.jwt_token;
+
+  // it is used to verify whether the "token" which is being created is verified or signed by our JWT_SECRET 
+  // and by the jsonwebtoken or not AND IT ALWAYS RETURN AN OBJECT
+  const decoded = jwt.verify(token, process.env.JWT_SECRET)
+  console.log(decoded)
+
+  // it is used to extract the user based on the ID inside the decoded object
+  const user = await userModel.findById(decoded.id);
+
+  res.status(200).json({
+    message: "User Fetched Successfully",
+    name: user.name,
+    email: user.email
   })
 })
 
