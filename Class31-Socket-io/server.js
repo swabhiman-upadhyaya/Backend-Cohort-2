@@ -13,8 +13,7 @@ io.on("connection", (socket) => {
     console.log("Single user fired message event")
     
     console.log(msg)
-    io.emit("abc")
-    socket.emit("abc")
+    io.emit("abc", msg)
   })
 
 });
