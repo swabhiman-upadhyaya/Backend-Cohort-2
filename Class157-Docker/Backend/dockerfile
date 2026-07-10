@@ -1,0 +1,46 @@
+# dockerfile doesn't build images, it says how to make it
+
+
+# it is a base image which is the combination of node:20 version and the 
+# Alpine Linux(which is reqd to run or use OS no UIUX part is there)
+# OS
+FROM node:20-alpine 
+
+# DEPENDENCIES
+COPY ./package.json .
+COPY ./package-lock.json .
+
+# NODE MODULES BASED ON THE PACKAGES INSIDE PACKAGE.JSON like (cmd npm i)
+RUN npm install
+
+# CODE BASE
+COPY ./server.js .
+
+# TO RUN THE SERVER
+CMD ["node", "server.js"]
+
+# THIS CMD => to build an image, in current folder, 
+# to give image tag, named cohort_2..............
+# docker build . -t cohort_2
+
+# THIS CMD => start an new container from in img, 
+# by port mapping (means if we request on 8080 port then it'll go to 3000 port inside container),
+# 8080: my machine port 3000: container port 
+# in this image.............................
+# docker run -p 8080:3000 cohort_2
+
+# All the thing related to that running container will be shown.............
+# docker ps
+
+# container will be stop and we won't be able to access the url port
+# docker stop "id"
+
+# all container details including stop and exited(stop but not deleted) ones....................
+# docker ps -a
+
+# to remove container after stopping it
+# docker rm "id"
+
+# we can also run more than one container in same image by changing the port like this......
+# docker run -p 4000:3000 cohort_2
+# docker run -p 8000:3000 cohort_2
