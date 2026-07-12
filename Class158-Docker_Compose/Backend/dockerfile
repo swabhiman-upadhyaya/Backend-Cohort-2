@@ -1,0 +1,18 @@
+# Here all the things should be going in sequence
+
+# OS, NODE JS
+FROM node:20-alpine
+
+WORKDIR /app
+
+# DEPENDENCIES
+COPY package.json /app
+COPY package-lock.json /app
+
+# NODE MODULES
+RUN npm install
+
+# CODE BASE: src and server.js file including 
+COPY . /app
+
+CMD ["node", "server.js"]

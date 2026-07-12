@@ -1,0 +1,12 @@
+services:
+  backend:              # ← name for this service/container
+    build: ./Backend    # ← same as: docker build ./Backend as we're running it from the parent folder of Backend not backend directly
+    ports:
+      - "8080:3000"     # ← same as: -p 8080:3000
+    volumes:
+      - ./Backend:/app  # ← means if there'll be change in Backend folder than reflect it in /app folder of container
+      - backend_node_modules:/app/node_modules
+    command: npx nodemon -L /app/server.js
+
+volumes:
+  backend_node_modules:
