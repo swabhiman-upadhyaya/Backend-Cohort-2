@@ -1,0 +1,41 @@
+
+# This file is responsible for creating and managing the pods by it's IP 
+
+# This file will not directly go to the kubernetes which is inside docker desktop
+# so to do manually cmd is: kubectl apply -f ./k8s/deployment.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-deployment
+
+spec:
+  replicas: 3 # no of pod runs by the deployment at a given time 
+
+  selector:
+    matchLabels:
+      app: main-server
+
+  template:
+    metadata:
+      labels:
+        app: main-server
+        editor: vscode
+
+    spec:
+      containers:   # we can define multiple containers to be inside one pord but generally we can't
+      - name: main-server
+        image: express_cohort_2:latest
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 3000
+
+        resources:
+          limits:
+            memory: "128Mi"   # RAM 128 megabytes maximum
+            cpu: "500m"     # CPU 500 millicores (0.5 CPU core) maximum usage
+
+          requests:
+            memory: "64Mi"  # generally it uses
+            cpu: "250m"
