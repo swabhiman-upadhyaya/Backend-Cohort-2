@@ -13,7 +13,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  
+   - http:
       paths:
       - pathType: Prefix
         path: "/"     # it means if any traffic comes from "/" then forward it to this service (service name) and this port
@@ -21,4 +22,14 @@ spec:
           service:
             name: main-server-service
             port: 
+              number: 80
+
+   - http:
+      paths:
+      - pathType: Prefix
+        path: "/api/product"
+        backend:
+          service:
+            name: product-service
+            port:
               number: 80
